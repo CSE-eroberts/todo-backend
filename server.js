@@ -33,7 +33,7 @@ const updateTodo = async (req, res) => {
   const body = req.body || {};
   let updated = false;
 
-  const nextTitle = getTodoTitle(body);
+  const nextTitle = body.title;
   if (nextTitle !== undefined) {
     const trimmedTitle = nextTitle.trim();
     updated = true;
@@ -90,7 +90,7 @@ app.delete("/api/todos/:id", async (req, res) => {
     return res.status(404).json({ error: "Todo not found" });
   }
 
-  res.json(sendTodo(todo));
+  res.json(todo);
 });
 
 const port = process.env.PORT || 3001; //set the port
